@@ -25,14 +25,14 @@ constexpr uint16_t MaxAlbumLenOnList{33};
 constexpr uint16_t MaxRecordsOnScreen{13};
 constexpr uint16_t LeftButtonHighLimit{7};
 constexpr uint16_t LeftButtonLowLimit{0};
-constexpr uint16_t RightButtonHighLimit{186};
-constexpr uint16_t RightButtonLowLimit{180};
+constexpr uint16_t RightButtonHighLimit{185};
+constexpr uint16_t RightButtonLowLimit{182};
 constexpr uint16_t UpButtonHighLimit{43};
 constexpr uint16_t UpButtonLowLimit{35};
 constexpr uint16_t DownButtonHighLimit{102};
 constexpr uint16_t DownButtonLowLimit{95};
-constexpr uint16_t OkButtonHighLimit{380};
-constexpr uint16_t OkButtonLowLimit{370};
+constexpr uint16_t OkButtonHighLimit{379};
+constexpr uint16_t OkButtonLowLimit{376};
 constexpr uint16_t SelectionBoxWidth{240};
 constexpr uint16_t SelectionBoxHeight{24};
 constexpr uint16_t SelectionStep{24};
@@ -315,7 +315,7 @@ void readKeyboard()
 {
   int32_t iButtonValue{analogRead(A0)};
 
-  //Serial.println(iButtonValue);
+  Serial.println(iButtonValue);
 
   if ((iButtonValue <= LeftButtonHighLimit) && (iButtonValue >= LeftButtonLowLimit)) {    
     processLeftButton();
