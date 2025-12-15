@@ -2,9 +2,22 @@
 #include "Records.h"
 #include <SD.h>
 
-bool sortFunctionCount (Records::Data &a, Records::Data &b) {return (a.uCount<b.uCount);}
-bool sortFunctionName (Records::Data &a, Records::Data &b) {return (a.strArtist<b.strArtist);}
-bool sortFunctionDate (Records::Data &a, Records::Data &b){return (a.strLastPlayedDate<b.strLastPlayedDate);}
+bool sortFunctionCount (Records::Data &a, Records::Data &b) 
+{
+  return (a.uCount<b.uCount);
+}
+
+bool sortFunctionName (Records::Data &a, Records::Data &b) 
+{
+  if (a.strArtist.compare(b.strArtist) == 0)
+    return (a.strAlbum<b.strAlbum);
+  return (a.strArtist<b.strArtist);
+}
+
+bool sortFunctionDate (Records::Data &a, Records::Data &b)
+{
+  return (a.strLastPlayedDate<b.strLastPlayedDate);
+}
 
 constexpr uint16_t SDCSPin{4};
 
