@@ -26,7 +26,7 @@ Records::Records(std::string strTitle, int32_t iColor1, int32_t iColor2, std::st
   m_iColor1{iColor1},
   m_iColor2{iColor2},
   m_strFile{strFile},
-  m_sortMode{SortMode::Name},
+  m_sortMode{SortMode::Count},
   m_uTotalCount{0}
 {
   if (!SD.begin(SDCSPin)) {    
@@ -35,7 +35,7 @@ Records::Records(std::string strTitle, int32_t iColor1, int32_t iColor2, std::st
 
   m_vectData.reserve(uReserve);
   readFile();
-  std::sort (m_vectData.begin(), m_vectData.end(), sortFunctionName);
+  std::sort (m_vectData.begin(), m_vectData.end(), sortFunctionCount);
 }
 
 void Records::readFile() 
@@ -179,17 +179,17 @@ int32_t Records::getColor2()
 
 void Records::sort()
 {
-  if (m_sortMode == SortMode::Name) {
-    m_sortMode = SortMode::Count;
-    std::sort(m_vectData.begin(), m_vectData.end(), sortFunctionCount);
+  if (m_sortMode == SortMode::Count) {
+    m_sortMode = SortMode::Name;
+    std::sort(m_vectData.begin(), m_vectData.end(), sortFunctionName);
   }
-  else if (m_sortMode == SortMode::Count) {
+  else if (m_sortMode == SortMode::Name) {
     m_sortMode = SortMode::Date;
     std::sort(m_vectData.begin(), m_vectData.end(), sortFunctionDate);
   }
   else if (m_sortMode == SortMode::Date) {
-    m_sortMode = SortMode::Name;
-    std::sort(m_vectData.begin(), m_vectData.end(), sortFunctionName);
+    m_sortMode = SortMode::Count;
+    std::sort(m_vectData.begin(), m_vectData.end(), sortFunctionCount);
   }
 }
 
