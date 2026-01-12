@@ -141,12 +141,16 @@ void setup(void) {
   tft.pushImage(0, 0, START_IMAGE_WIDTH, START_IMAGE_HEIGHT, start_image);
   tft.setTextSize(1);
   tft.setCursor(5, ConnectingToWiFiY, 1);
+
+  if (!SD.begin(SDCSPin)) {   
+    tft.setTextColor(TFT_RED);
+    tft.print("SD card not detected."); 
+    return;
+  }
+  
   tft.setTextColor(TFT_WHITE);
   tft.print("Connecting to WiFi.");
 
-  if (!SD.begin(SDCSPin)) {    
-    return;
-  }
   auto wifiSettings = readWiFiSettings();
 
   // This is to enable back faster screen updating after SD card operations
